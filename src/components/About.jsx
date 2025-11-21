@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { skills, personalInfo } from '../data';
 import { Brain, Code, Cpu, TrendingUp, BookOpen, Award } from 'lucide-react';
+import TechSphere from './ui/TechSphere';
 
 export default function About() {
   const iconMap = {
@@ -17,7 +18,7 @@ export default function About() {
       {/* Background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.04),transparent_40%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.03),transparent_40%)]" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
@@ -31,13 +32,13 @@ export default function About() {
             <Brain className="w-4 h-4 text-gray-400" />
             <span className="text-sm font-medium text-gray-400">About Me</span>
           </div>
-          
+
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
               Expertise & Skills
             </span>
           </h2>
-          
+
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             {personalInfo.bio}
           </p>
@@ -74,51 +75,16 @@ export default function About() {
           ))}
         </motion.div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {skills.map((skillGroup, index) => {
-            const Icon = iconMap[skillGroup.category] || Code;
-            
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                className="glass rounded-2xl p-6 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 group"
-              >
-                {/* Category Header */}
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-all duration-300">
-                    <Icon className="w-6 h-6 text-gray-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">
-                    {skillGroup.category}
-                  </h3>
-                </div>
-
-                {/* Skills */}
-                <div className="flex flex-wrap gap-2">
-                  {skillGroup.items.map((skill, idx) => (
-                    <motion.span
-                      key={idx}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 + idx * 0.05 }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      className="px-3 py-1.5 text-sm font-medium rounded-lg glass text-gray-300 hover:bg-white/10 hover:text-white transition-all duration-300 cursor-default"
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+        {/* Skills Sphere */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-20"
+        >
+          <TechSphere skills={skills} />
+        </motion.div>
 
         {/* Currently Learning Section */}
         <motion.div

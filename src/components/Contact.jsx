@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data';
 import { Mail, Send, Github, Linkedin, ExternalLink, Download, FileText } from 'lucide-react';
+import Earth from './ui/Earth';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,9 +15,9 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     alert('Thank you for your message! I will get back to you soon.');
     setFormData({ name: '', email: '', message: '' });
     setIsSubmitting(false);
@@ -32,7 +33,7 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-32 px-4 bg-gradient-to-b from-black via-zinc-950 to-black overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_50%)]" />
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,13 +46,13 @@ export default function Contact() {
             <Mail className="w-4 h-4 text-gray-400" />
             <span className="text-sm font-medium text-gray-400">Get In Touch</span>
           </div>
-          
+
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
               Let's Work Together
             </span>
           </h2>
-          
+
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Have an exciting AI project in mind? Let's collaborate and build something amazing!
           </p>
@@ -63,8 +64,13 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2 space-y-6 flex flex-col"
           >
+            {/* 3D Earth */}
+            <div className="hidden lg:block h-[400px] w-full glass rounded-2xl overflow-hidden backdrop-blur-xl">
+              <Earth />
+            </div>
+
             {/* Social Links */}
             <div className="glass rounded-2xl p-6 backdrop-blur-xl hover:bg-white/5 transition-all duration-300">
               <h3 className="text-xl font-bold text-white mb-6">Connect With Me</h3>
@@ -87,7 +93,7 @@ export default function Contact() {
                         <social.icon className="w-5 h-5 text-white" />
                       ) : social.isKaggle ? (
                         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.358"/>
+                          <path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.358" />
                         </svg>
                       ) : (
                         <span className="text-xl">🤗</span>
@@ -134,10 +140,10 @@ export default function Contact() {
                   <div className="text-sm text-gray-500 mb-1">Status</div>
                   <div className="flex items-center gap-2">
                     <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gray-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-gray-300"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                     </span>
-                    <span className="text-gray-300 font-medium">{personalInfo.availability}</span>
+                    <span className="text-green-400 font-medium">{personalInfo.availability}</span>
                   </div>
                 </div>
               </div>
@@ -154,7 +160,7 @@ export default function Contact() {
           >
             <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 backdrop-blur-xl hover:bg-white/5 transition-all duration-300">
               <h3 className="text-2xl font-bold text-white mb-6">Send Me a Message</h3>
-              
+
               <div className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">
