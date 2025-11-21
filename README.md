@@ -1,7 +1,6 @@
 # 🤖 AI Engineer Portfolio
 
 A stunning, interactive 3D portfolio website showcasing AI/ML projects with a scroll-reactive robot and modern UI built with React, Three.js, and Tailwind CSS.
-
 ## ✨ Features
 
 - **🤖 Scroll-Reactive 3D Robot**: Custom-built AI robot that animates and rotates based on scroll position
